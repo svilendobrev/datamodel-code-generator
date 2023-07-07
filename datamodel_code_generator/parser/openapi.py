@@ -163,7 +163,7 @@ class OpenAPIParser(JsonSchemaParser):
             source=source,
             **ka
         )
-        self.open_api_scopes: List[OpenAPIScope] = openapi_scopes or [
+        self.openapi_scopes: List[OpenAPIScope] = openapi_scopes or [
             OpenAPIScope.Schemas
         ]
 
@@ -361,7 +361,7 @@ class OpenAPIParser(JsonSchemaParser):
                     )
                 )
 
-        if OpenAPIScope.Parameters in self.open_api_scopes and fields:
+        if OpenAPIScope.Parameters in self.openapi_scopes and fields:
             self.results.append(
                 self.data_model_type(fields=fields, reference=reference)
             )
@@ -402,7 +402,7 @@ class OpenAPIParser(JsonSchemaParser):
             responses=operation.responses,
             path=[*path, 'responses'],
         )
-        if OpenAPIScope.Tags in self.open_api_scopes:
+        if OpenAPIScope.Tags in self.openapi_scopes:
             self.parse_tags(
                 name=self._get_model_name(path_name, method, suffix='Tags'),
                 tags=operation.tags,
@@ -427,7 +427,7 @@ class OpenAPIParser(JsonSchemaParser):
             security: Optional[List[Dict[str, List[str]]]] = specification.get(
                 'security'
             )
-            if OpenAPIScope.Schemas in self.open_api_scopes:
+            if OpenAPIScope.Schemas in self.openapi_scopes:
                 for (
                     obj_name,
                     raw_obj,
@@ -437,7 +437,7 @@ class OpenAPIParser(JsonSchemaParser):
                         raw_obj,
                         [*path_parts, '#/components', 'schemas', obj_name],
                     )
-            if OpenAPIScope.Paths in self.open_api_scopes:
+            if OpenAPIScope.Paths in self.openapi_scopes:
                 paths: Dict[str, Dict[str, Any]] = specification.get('paths', {})
                 parameters: List[Dict[str, Any]] = [
                     self._get_ref_body(p['$ref']) if '$ref' in p else p
