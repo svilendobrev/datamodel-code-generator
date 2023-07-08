@@ -1,0 +1,14 @@
+pydantic[ email ] == 1.*
+prance 
+openapi-spec-validator 
+jinja2 
+genson
+PyYAML
+#packaging pkg_resources typing_extensions - seems to come with pip?
+inflect	#unneeded extra:singular_name
+isort 	#unneeded if proper out-templates
+black	#unneeded if proper out-templates
+toml	#unneeded extra:implicit-config-from-pyproject	TODO
+PySnooper 	#unneeded dev-extra TODO
+#argcomplete 	#unneeded=optional
+#httpx		#optional
