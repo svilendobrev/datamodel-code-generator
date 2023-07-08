@@ -471,5 +471,8 @@ class OpenAPIParser(JsonSchemaParser):
                             raw_operation,
                             [*path, operation_name],
                         )
+        if OpenAPIScope.Tags in self.openapi_scopes:
+            self.openapi_tags = specification.get( 'tags')
+
 
         self._resolve_unparsed_json_pointer()
