@@ -31,7 +31,7 @@ from typing import (
 )
 from urllib.parse import ParseResult, urlparse
 
-import argcomplete
+#import argcomplete
 import black
 import toml
 from pydantic import BaseModel
@@ -677,7 +677,9 @@ def main(args: Optional[Sequence[str]] = None) -> Exit:
     """Main function."""
 
     # add cli completion support
-    argcomplete.autocomplete(arg_parser)
+    try: import argcomplete
+    except: pass
+    else: argcomplete.autocomplete(arg_parser)
 
     if args is None:
         args = sys.argv[1:]
